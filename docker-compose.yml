@@ -1,0 +1,38 @@
+
+version: '3.8'
+services:
+  centinela-pro:
+    build: .
+    container_name: centinela-3.0
+    command: python centinela_3.0.py # la clave esta aca
+    restart: always  # Si el contenedor falla, Docker lo levanta solo
+
+    cap_add: #comoando de añadir csapacidades al conteneodor
+      - NET_ADMIN #administracion de red, le permite acceder al la iptables para poder bloquear ips
+    network_mode: "host" # nos permite usar la ip dep servidor,normalmente cada contenedor es una burbuja y cuenta con su propa ip
+    env_file: .env
+    environment:
+      - PYTHONUNBUFFERED=1 # Logs en tiempo real garantizados
+    volumes:
+      - /var/log/auth.log:/var/log/auth.log:ro # Acceso a logs en solo lectura
+    depends_on:
+      - db_postgres
+# aca colocamos la base de datos postgre sql
+  db_postgres:
+    image: postgres:15-alpine
+
+    container_name: db_ataque_centinela
+    restart: always
+    env_file: .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql #es la conexion de la base de datos
+volumes:
+  pgdata:

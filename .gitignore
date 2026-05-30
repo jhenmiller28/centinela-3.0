@@ -1,0 +1,43 @@
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# VS Code
+.vscode/
+
+# Variables de entorno
+.env
+
+# Logs
+*.log
+salida.log
+bitacora_seguridad.txt
+
+# Datos
+*.csv
+*.xlsx
+*.db
+
+# Docker
+.docker/
+
+# PostgreSQL
+pgdata/
+
+# Secretos
+claves_secretas.txt
+secrets.py
+config.json
+
+# Llaves
+*.pem
+*.pub
