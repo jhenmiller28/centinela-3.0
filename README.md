@@ -1,7 +1,4 @@
 ﻿# centinela-3.0
-
-# Centinela 3.0 🛡️
-
 Sistema de monitoreo y respuesta automática para servidores Linux.
 
 Centinela 3.0 es un proyecto personal desarrollado como parte de mi proceso de aprendizaje en Linux, DevOps, Redes y Ciberseguridad. Su objetivo es detectar eventos sospechosos en los registros de autenticación del sistema, registrar la actividad en una base de datos PostgreSQL y aplicar medidas automáticas de mitigación.
